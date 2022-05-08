@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加员工</title>
+    <!--公共头-->
+    <link th:include="common::commonHeader">
+</head>
+<body>
+
+<div class="layui-layout layui-layout-admin">
+
+    <div th:replace="common::#menu1"></div>
+
+    <div th:replace="common::#menu2"></div>
+
+    <div class="layui-body">
+        <form class="layui-form layui-form-pane" th:action="@{/saveEmp}" method="post">
+
+            <div class="layui-form-item" pane>
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" i name="name" required  lay-verify="required" th:value="${emp !=null ? emp.getEmpName() : '例如：张三' }"  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item" pane>
+                <label class="layui-form-label">工资</label>
+                <div class="layui-input-block">
+                    <input type="text" i name="salary" required  lay-verify="required" th:value="${emp !=null ? emp.getEmpSalary() : '例如：1000.00'}"  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item" pane>
+                <label class="layui-form-label">工作地点</label>
+                <div class="layui-input-block">
+                    <select name="city" lay-verify="required">
+                        <option th:text="${emp !=null ? emp.getEmpSpace() : '请选择'}" th:value="${emp != null ? emp.getEmpSpace() : '北京'}"></option>
+                        <option value="北京">北京</option>
+                        <option value="上海">上海</option>
+                        <option value="广州">广州</option>
+                        <option value="深圳">深圳</option>
+                        <option value="西安">西安</option>
+                        <option value="安徽">安徽</option>
+                        <option value="青青草原">青青草原</option>
+                        <option value="狼堡">狼堡</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item" pane>
+                <label class="layui-form-label">部门</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="dept" value="研发部" title="研发部" th:attr="checked=${dept!= null and dept.toString()=='研发部' ? true : false}">
+                    <input type="radio" name="dept" value="测试部" title="测试部" th:attr="checked=${dept!= null and dept.toString()=='测试部' ? true : false}">
+                </div>
+            </div>
+
+            <div class="layui-form-item" pane>
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--公共页脚-->
+    <div th:replace="common::#foot"></div>
+
+</div>
+<!--公共script-->
+<div th:include="common::#commonScript"></div>
+</body>
+</html>

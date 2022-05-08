@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="commonHeader">
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../layui/css/layui.css">
+
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+
+    <div id="menu1" class="layui-header layui-bg-black">
+
+        <div class="layui-logo layui-hide-xs layui-bg-cyan layui-anim layui-anim-fadein" >
+            <i class="layui-icon layui-icon-home"></i>
+            HDLaZy的后台管理
+        </div>
+
+        <!-- 头部区域（可配合layui 已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left layui-bg-cyan">
+            <!-- 移动端显示 -->
+            <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm " lay-header-event="menuLeft">
+                <i class="layui-icon layui-icon-spread-left"></i>
+            </li>
+
+            <li class="layui-nav-item layui-hide-xs ">
+                <a th:href="@{/}">
+                <i class="layui-icon layui-icon layui-icon-form"></i>
+                部门
+                </a>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right layui-bg-cyan">
+            <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+                <a href="javascript:;">
+                        <img src="/imgs/head.jpg"  class="layui-nav-img">
+                        HDLaZy
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href=""><i class="layui-icon layui-icon-release"></i> 设置</a></dd>
+                    <dd><a href="">
+
+                        <i class=" layui-icon layui-icon-logout" style="color: red">退出</i>
+                    </a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+                <a href="javascript:;">
+                    <i class="layui-icon layui-icon-more-vertical" ></i>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+    <div id="menu2" class="layui-side layui-bg-cyan">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item ">
+                    <a class="layui-bg-cyan" href="#">研发部</a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/addEmpPage}">添加人员</a></dd>
+                    </dl>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/emps/1}">查看人员</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="layui-bg-cyan" href="#">测试部</a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/addEmpPage}">添加人员</a></dd>
+                    </dl>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/emps/2}">查看人员</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="foot" class="layui-footer">
+        <!-- 底部固定区域 -->
+        联系我：2889312795@qq.com
+    </div>
+</div>
+
+<div id="commonScript">
+    <script src="../layui/layui.js"></script>
+    <script>
+        //JS
+        layui.use(['element', 'layer', 'util'], function(){
+            var element = layui.element
+                ,layer = layui.layer
+                ,util = layui.util
+                ,$ = layui.$;
+
+            //头部事件
+            util.event('lay-header-event', {
+                //左侧菜单事件
+                menuLeft: function(othis){
+                    layer.msg('展开左侧菜单的操作', {icon: 0});
+                }
+                ,menuRight: function(){
+                    layer.open({
+                        type: 1
+                        ,content: '<div style="padding: 15px;">天天CRUD</div>'
+                        ,area: ['260px', '100%']
+                        ,offset: 'rt' //右上角
+                        ,anim: 5
+                        ,shadeClose: true
+                    });
+                }
+            });
+
+
+            layer.msg('欢迎你来CRUD');
+
+        });
+    </script>
+</div>
+
+
+
+</body>
+</html>

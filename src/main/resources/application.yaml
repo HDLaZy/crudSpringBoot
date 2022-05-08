@@ -1,0 +1,13 @@
+#配置druid
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/crud
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    druid:
+      max-active: 10
+      min-idle: 5
+      initial-size: 3

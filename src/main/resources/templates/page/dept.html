@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--公共头-->
+    <title>CRUD部门</title>
+    <link th:include="common::commonHeader">
+</head>
+<body>
+
+<div class="layui-layout layui-layout-admin">
+
+    <div th:replace="common::#menu1"></div>
+
+    <div th:replace="common::#menu2"></div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <table class="layui-table">
+            <colgroup>
+                <col width="150">
+                <col width="200">
+                <col>
+            </colgroup>
+            <thead>
+            <tr>
+                <th>部门名称</th>
+                <th>部门工作</th>
+               <!-- <th>操作</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dept:${depts}">
+                <td th:text="${dept.getDeptName()}" >(部门名称)</td>
+                <td th:text="${dept.getDeptWork()}">(部门工作)</td>
+              <!--  <td>
+                    <a th:href="@{/upDept/{deptId}(deptId=${dept.getDeptId()})}" class="layui-btn layui-btn-sm   layui-btn-normal">修改</a>
+                    <a th:href="@{/delDept/{deptId}(deptId=${dept.getDeptId()})}" class="layui-btn layui-btn-sm layui-btn-danger">删除</a>
+                </td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--公共页脚-->
+    <div th:replace="common::#foot"></div>
+
+</div>
+<!--公共script-->
+<div th:include="common::#commonScript"></div>
+</body>
+</html>

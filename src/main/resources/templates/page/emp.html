@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD员工</title>
+    <!--公共头-->
+    <link th:include="common::commonHeader">
+</head>
+<body>
+
+<div class="layui-layout layui-layout-admin">
+
+    <div th:replace="common::#menu1"></div>
+
+    <div th:replace="common::#menu2"></div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <table class="layui-table">
+            <colgroup>
+                <col width="150">
+                <col width="200">
+                <col>
+            </colgroup>
+            <thead>
+            <tr>
+                <th>员工姓名</th>
+                <th>员工工资</th>
+                <th>工作地点</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="emp:${emps}">
+                <td th:text="${emp.getEmpName()}" >(员工姓名)</td>
+                <td th:text="${emp.getEmpSalary()}">(员工工资)</td>
+                <td th:text="${emp.getEmpSpace()}">(工作地点)</td>
+                <td>
+                    <a th:href="@{/upPage/{empId}(empId=${emp.getEmpId()})}" class="layui-btn layui-btn-sm   layui-btn-normal">修改</a>
+                    <a th:href="@{/delEmp/{empId}/{deptId}(empId=${emp.getEmpId()},deptId=${emp.getEmpDept()})}" class="layui-btn layui-btn-sm layui-btn-danger">删除</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--公共页脚-->
+    <div th:replace="common::#foot"></div>
+
+</div>
+<!--公共script-->
+<div th:include="common::#commonScript"></div>
+</body>
+</html>
